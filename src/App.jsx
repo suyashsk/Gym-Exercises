@@ -7,7 +7,10 @@ import axios from 'axios'
 function App() {
   
   const[data,setData] = useState([]);
+  const[filterData,setFilterData] = useState([]);
   const[inputData,setInputData] = useState("");
+ 
+
   useEffect(()=>{
 
     async function getDataa(){
@@ -27,21 +30,58 @@ function App() {
       const result = await axios.request(options)
       console.log(result.data);
       setData(result.data);
+      setFilterData(result.data);
     }
     getDataa();
   },[]);
   console.log(data)
+  console.log(filterData);
 
   function handleInputData(){
-    let temp = data.filter((item)=>{
+    let temp = filterData.filter((item)=>{
         if(item.bodyPart === inputData.toLowerCase())
           return item;
-        
+        // return inputData.toLowerCase() === '' ? item : item.bodyPart.toLowerCase().includes(inputData)        
     })
-    setData(temp)
+    // setData(temp)
+    setFilterData(temp);
     setInputData("")
   }
 
+
+  function handleAllData(){
+    // setData(data)
+    setFilterData(data)
+  }
+
+
+  function handleBack(){
+    setFilterData(data)
+    let temp = filterData.filter((item)=>{
+      if(item.bodyPart === "back"){
+        return item
+      }
+    })
+    setFilterData(temp);
+  }
+  function handleUpperLegs(){
+    setFilterData(data)
+    let temp = filterData.filter((item)=>{
+      if(item.bodyPart === "upper legs"){
+        return item
+      }
+    })
+    setFilterData(temp);
+  }
+  function handleChest(){
+    setFilterData(data)
+    let temp = filterData.filter((item)=>{
+      if(item.bodyPart === "chest"){
+        return item
+      }
+    })
+    setFilterData(temp);
+  }
   return (
     <>
       <div className='main_container'>
@@ -52,10 +92,17 @@ function App() {
           <input className='text_search' type='text' placeholder='Search with your target bodypart' value={inputData} onChange={(e)=>setInputData(e.currentTarget.value)} />
           <button className='btn_search' onClick={handleInputData}>Search</button>
         </div>
+        <div className='selectdata'>
+        
+        <button className='btn1' onClick={handleAllData}>All Exercises</button>
+        <button className='btn1' onClick={handleBack}>Back</button>
+        <button className='btn1' onClick={handleUpperLegs}>Upper Legs</button>
+        <button className='btn1' onClick={handleChest}>Chest</button>
 
+        </div>
         <div className='data_content'>
           {
-            data.map((item,index)=>{
+            filterData.map((item,index)=>{
               return(
                 <div className='exercise_data' key={index}>
                   <div className='image'>

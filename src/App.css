@@ -67,6 +67,7 @@ body{
   width: 100%;
   border-top: 8px solid red;
   padding: 10px;
+  background-color: #ffffff;
 }
 .image{
   width: 100%;
@@ -86,7 +87,7 @@ body{
 }
 .se1{
   border: 1px solid transparent;
-  padding: 4px;
+  padding: 5px;
   color: #ffffff;
   background-color: rgb(251, 141, 159);
   border-radius: 20px;
