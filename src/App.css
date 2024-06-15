@@ -59,16 +59,17 @@ body{
   grid-template-columns: repeat(3,1fr);
   /* gap:10px; */
   /* grid-template-rows: repeat(4,1fr); */
-  padding: 40px;
-  gap: 10px;
+  padding: 50px;
+  gap: 20px;
+
 }
 .exercise_data{
   width: 100%;
+  border-top: 8px solid red;
+  padding: 10px;
 }
 .image{
   width: 100%;
-  /* object-fit: cover; */
-  background-color: red;
 }
 .image img{
   width: 100%;
@@ -78,7 +79,7 @@ body{
   width: 100%;
   /* border: 1px solid black; */
   padding: 8px;
-  background-color: yellowgreen;
+  /* background-color: yellowgreen; */
   display: flex;
   align-items: center;
   gap: 20px;
@@ -98,4 +99,10 @@ body{
   background-color: rgb(251, 190, 77);
   border-radius: 20px;
   font-weight: 600;
+}
+.item_name{
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: capitalize;
+  padding: 4px 4px 0px 4px;
 }

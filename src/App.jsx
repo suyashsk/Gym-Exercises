@@ -15,7 +15,7 @@ function App() {
         method: 'GET',
         url: 'https://exercisedb.p.rapidapi.com/exercises',
         params: {
-          limit: '20',
+          limit: '15',
           offset: '0'
         },
         headers: {
@@ -63,7 +63,7 @@ function App() {
                   </div>
                   <div>
                     <p>{item.bodyPart}</p>
-                    <p>{item.target}</p>
+                    
                     <div className='secondary'>
                       {item.secondaryMuscles.map((ab,index)=>{
                         return(
@@ -72,7 +72,7 @@ function App() {
                       })}
                     </div>
                     
-                    <p>{item.name}</p>
+                    <p className='item_name'>{item.name}</p>
                   </div>
                 </div>
               )
