@@ -9,29 +9,28 @@ function App() {
   const[data,setData] = useState([]);
   const[filterData,setFilterData] = useState([]);
   const[inputData,setInputData] = useState("");
- 
+  const[butnInput,setButtonInput] = useState("All Exercises: ");
 
+  async function getDataa(){
+    const options = {
+      method: 'GET',
+      url: 'https://exercisedb.p.rapidapi.com/exercises',
+      params: {
+        limit: '15',
+        offset: '0'
+      },
+      headers: {
+        'x-rapidapi-key': 'f51d4f4046msh81e25e82e26b3a5p13c8fbjsnfe54366e3bcf',
+        'x-rapidapi-host': 'exercisedb.p.rapidapi.com'
+      }
+    };
+
+    const result = await axios.request(options)
+    console.log(result.data);
+    setData(result.data);
+    setFilterData(result.data);
+  }
   useEffect(()=>{
-
-    async function getDataa(){
-      const options = {
-        method: 'GET',
-        url: 'https://exercisedb.p.rapidapi.com/exercises',
-        params: {
-          limit: '15',
-          offset: '0'
-        },
-        headers: {
-          'x-rapidapi-key': 'f51d4f4046msh81e25e82e26b3a5p13c8fbjsnfe54366e3bcf',
-          'x-rapidapi-host': 'exercisedb.p.rapidapi.com'
-        }
-      };
-
-      const result = await axios.request(options)
-      console.log(result.data);
-      setData(result.data);
-      setFilterData(result.data);
-    }
     getDataa();
   },[]);
   console.log(data)
@@ -44,6 +43,7 @@ function App() {
         // return inputData.toLowerCase() === '' ? item : item.bodyPart.toLowerCase().includes(inputData)        
     })
     // setData(temp)
+    setButtonInput(inputData.toLowerCase())
     setFilterData(temp);
     setInputData("")
   }
@@ -52,6 +52,7 @@ function App() {
   function handleAllData(){
     // setData(data)
     setFilterData(data)
+    setButtonInput("All Exercises: ")
   }
 
 
@@ -63,6 +64,7 @@ function App() {
       }
     })
     setFilterData(temp);
+    setButtonInput("Back Exercises: ")
   }
   function handleUpperLegs(){
     setFilterData(data)
@@ -72,6 +74,7 @@ function App() {
       }
     })
     setFilterData(temp);
+    setButtonInput("Upper Legs Exercises: ")
   }
   function handleChest(){
     setFilterData(data)
@@ -81,6 +84,7 @@ function App() {
       }
     })
     setFilterData(temp);
+    setButtonInput("Chest Exercises: ")
   }
   return (
     <>
@@ -99,6 +103,9 @@ function App() {
         <button className='btn1' onClick={handleUpperLegs}>Upper Legs</button>
         <button className='btn1' onClick={handleChest}>Chest</button>
 
+        </div>
+        <div className='btnInputhandle'>
+          <h2>{butnInput}</h2>
         </div>
         <div className='data_content'>
           {
