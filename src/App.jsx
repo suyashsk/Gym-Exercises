@@ -37,53 +37,57 @@ function App() {
   console.log(filterData);
 
   function handleInputData(){
-    let temp = filterData.filter((item)=>{
+    let temp = [...data];
+    let tempo = temp.filter((item)=>{
         if(item.bodyPart === inputData.toLowerCase())
           return item;
         // return inputData.toLowerCase() === '' ? item : item.bodyPart.toLowerCase().includes(inputData)        
     })
     // setData(temp)
-    setButtonInput(inputData.toLowerCase())
-    setFilterData(temp);
+    setButtonInput(inputData.toLowerCase() + " Exercises :")
+    setFilterData(tempo);
     setInputData("")
   }
 
 
   function handleAllData(){
-    // setData(data)
+   
     setFilterData(data)
     setButtonInput("All Exercises: ")
   }
 
 
   function handleBack(){
-    setFilterData(data)
-    let temp = filterData.filter((item)=>{
+    
+    let temp = [...data]
+    let tempo = temp.filter((item)=>{
       if(item.bodyPart === "back"){
         return item
       }
     })
-    setFilterData(temp);
+    setFilterData(tempo);
     setButtonInput("Back Exercises: ")
   }
   function handleUpperLegs(){
-    setFilterData(data)
-    let temp = filterData.filter((item)=>{
+   
+    let temp = [...data]
+    let tempo = temp.filter((item)=>{
       if(item.bodyPart === "upper legs"){
         return item
       }
     })
-    setFilterData(temp);
+    setFilterData(tempo);
     setButtonInput("Upper Legs Exercises: ")
   }
   function handleChest(){
-    setFilterData(data)
-    let temp = filterData.filter((item)=>{
+    
+    let temp = [...data]
+    let tempo = temp.filter((item)=>{
       if(item.bodyPart === "chest"){
         return item
       }
     })
-    setFilterData(temp);
+    setFilterData(tempo);
     setButtonInput("Chest Exercises: ")
   }
   return (
